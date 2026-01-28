@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --primary: #821131;
+    --sand: #fdfbf7;
+    --text: #2c2c2c;
+    --font-head: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+  }
+
+  body {
+    margin: 0; padding: 0;
+    background-color: #f4f4f4;
+    font-family: var(--font-body);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 480px; margin: 0 auto;
+    background: var(--sand);
+    padding-bottom: 60px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate {
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+  }
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+  .delay-3 { animation-delay: 0.6s; }
+
+  /* --- HEADER --- */
+  .mag-header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 2px solid var(--primary);
+  }
+  
+  .issue-no {
+    font-family: var(--font-body); font-size: 10px; letter-spacing: 4px;
+    text-transform: uppercase; color: #888; margin-bottom: 10px; display: block;
+  }
+  
+  .title-big {
+    font-family: var(--font-head); font-size: 42px; line-height: 0.9;
+    color: var(--text); margin: 0; font-weight: 700;
+  }
+  
+  .title-cursive {
+    font-family: var(--font-head); font-size: 38px; color: var(--primary);
+    font-style: italic; display: block; margin-top: 5px; font-weight: 400;
+  }
+
+  /* --- INTRO --- */
+  .intro-box { padding: 30px; text-align: justify; }
+  .intro-text {
+    font-size: 13px; line-height: 1.8; color: #555;
+  }
+  .drop-cap {
+    float: left; font-family: var(--font-head); font-size: 60px;
+    line-height: 45px; margin-right: 10px; color: var(--primary);
+  }
+
+  /* --- ZIG-ZAG LAYOUT --- */
+  .section-row {
+    display: flex; align-items: center;
+    padding: 20px; margin-bottom: 10px;
+  }
+  
+  .layout-left { flex-direction: row; }
+  .layout-right { flex-direction: row-reverse; text-align: right; }
+
+  .col-img {
+    flex: 0 0 40%;
+    height: 140px;
+    background-color: #ddd;
+    background-size: cover; background-position: center;
+    border: 1px solid #000;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+  }
+
+  .col-text { flex: 1; padding: 0 15px; }
+  
+  .mini-title {
+    font-family: var(--font-head); font-size: 18px; font-weight: 700;
+    color: var(--text); margin: 0 0 8px; line-height: 1.2;
+  }
+  
+  .mini-desc {
+    font-size: 11px; color: #666; margin: 0; line-height: 1.5;
+  }
+
+  /* --- HIGHLIGHT: COMMUNITY --- */
+  .community-pass {
+    margin: 40px 20px;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid var(--primary);
+  }
+  
+  .pass-header {
+    background: var(--primary); padding: 8px 15px;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 600; text-align: center;
+  }
+  
+  .pass-body { padding: 25px; display: flex; align-items: center; }
+  
+  .pass-img {
+    width: 60px; height: 60px; border-radius: 50%;
+    border: 2px solid #fff; margin-right: 15px; flex-shrink: 0;
+    background-color: #333;
+    background-size: cover; background-position: center;
+  }
+  
+  .pass-text h3 {
+    font-family: var(--font-head); font-size: 20px; margin: 0 0 5px;
+    font-style: italic; color: #fff;
+  }
+  .pass-text p { font-size: 11px; color: #ccc; margin: 0; line-height: 1.4; }
+
+  /* --- HIGHLIGHT: BONUS --- */
+  .bonus-section {
+    position: relative;
+    margin: 50px 30px;
+    padding: 30px;
+    background: #fff0f5;
+    border: 2px dashed var(--primary);
+    text-align: center;
+    transform: rotate(-2deg);
+  }
+  
+  .bonus-badge {
+    position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    background: var(--primary); color: white;
+    padding: 5px 20px; font-family: var(--font-body);
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  }
+
+  .bonus-content img {
+    width: 100%; height: 120px; object-fit: cover;
+    margin-bottom: 15px; border-radius: 4px;
+    filter: grayscale(20%);
+  }
+
+  .bonus-title {
+    font-family: var(--font-head); font-size: 22px; color: var(--text);
+    margin: 0 0 5px;
+  }
+
+  /* --- TESTIMONIALS (AUTO SLIDER + PAUSE) --- */
+  .testi-wrap {
+    background: #fff; 
+    border-top: 1px solid #ddd; 
+    border-bottom: 1px solid #ddd;
+    padding: 40px 0; 
+    margin-top: 40px;
+    overflow: hidden; /* Wajib hidden untuk marquee */
+  }
+  
+  .slider-track {
+    display: flex;
+    width: max-content; /* Agar muat semua kartu */
+    animation: scroll 25s linear infinite; /* Animasi jalan terus */
+  }
+
+  /* LOGIKA PAUSE: Saat di-hover atau di-touch, animasi berhenti */
+  .slider-track:hover,
+  .slider-track:active, 
+  .slider-track:focus-within {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Bergerak setengah (karena konten diduplikat) */
+  }
+
+  .testi-card {
+    width: 260px; /* Lebar fix */
+    background: var(--primary);
+    color: #fff;
+    padding: 25px;
+    margin-right: 15px;
+    border-radius: 16px 16px 16px 0;
+    font-size: 12px; line-height: 1.6;
+    flex-shrink: 0; /* Agar kartu tidak menyusut */
+  }
+
+  /* --- FOOTER --- */
+  .footer {
+    text-align: center; padding-top: 40px;
+    font-family: var(--font-head); font-style: italic; color: var(--primary);
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="mag-header animate">
+    <span class="issue-no">The Starter Pack • Vol. 01</span>
+    <h1 class="title-big">Master of <br><span class="title-cursive">Ceremony</span></h1>
+  </header>
+
+  <section class="intro-box animate delay-1">
+    <p class="intro-text">
+      <span class="drop-cap">H</span>ai Nona manis! ✨ Jujur deh, pernah nggak sih jantung rasanya mau copot pas nama kamu dipanggil ke panggung? <em>It’s okay</em>, aku paham banget. Deg-degan itu tanda kamu peduli sama performa kamu. Tapi, jangan biarkan itu bikin kamu <em>stuck</em> ya! Aku udah siapin "bekal" khusus biar Nona tampil <strong>elegan & super <em>confident</em></strong>. Yuk intip isinya!
+    </p>
+  </section>
+
+  <div class="section-row layout-left animate delay-2">
+    <div class="col-img" style="background-image: url('https://image2url.com/r2/default/images/1769610065346-150efbd6-de4c-4f37-8993-0b999f533a5b.png');"></div>
+    <div class="col-text">
+      <h3 class="mini-title">01. The Notion Vault</h3>
+      <p class="mini-desc">Script MC lengkap yang estetik & rapih. Tinggal duplikat, edit dikit, dan siap tampil tanpa drama nge-blank.</p>
+    </div>
+  </div>
+
+  <div class="section-row layout-right animate delay-2">
+    <div class="col-text">
+      <h3 class="mini-title">02. Confidence Checklist</h3>
+      <p class="mini-desc">List "wajib bawa" biar gak ada yang ketinggalan. Pikiran Nona bakal jauh lebih tenang pas hari H.</p>
+    </div>
+    <div class="col-img" style="background-image: url('https://image2url.com/r2/default/images/1769610310571-eda736fb-f790-44b4-83f6-27c9c75131b7.png');"></div>
+  </div>
+
+  <div class="community-pass animate delay-3">
+    <div class="pass-header">★ Exclusive Access ★</div>
+    <div class="pass-body">
+      <div class="pass-img" style="background-image: url('https://image2url.com/r2/default/images/1769610395811-ef85e6d8-61b4-42c6-a898-1ace21600973.png');"></div>
+      <div class="pass-text">
+        <h3>Inner Circle.</h3>
+        <p>Gabung geng MC se-Indonesia! Tempat curhat, nanya job, dan saling support. <em>Vibes</em>-nya positif banget sumpah.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bonus-section animate delay-3">
+    <div class="bonus-badge">Free Gift 🎁</div>
+    <div class="bonus-content">
+      <img src="https://image2url.com/r2/default/images/1769610913095-84466cfe-a3da-4e92-bd4c-b6d731ab837e.png" alt="Vocal Tips" style="background-color:#ccc;"> 
+      <h3 class="bonus-title">Vocal Warm-Up</h3>
+      <p style="font-size:12px; margin:0;">
+        Rahasia suara "empuk" & stabil di mic. <br>Biar sapaan Nona terdengar mahal!
+      </p>
+    </div>
+  </div>
+
+  <div class="testi-wrap animate delay-3">
+    <div style="text-align:center; margin-bottom:20px; font-family:var(--font-head); color:var(--primary); font-weight:700;">
+      Love Notes from Nonas
+    </div>
+    
+    <div class="slider-track">
+      
+      <div class="testi-card">
+        "Sumpah ini ngebantu banget! Aku yg tadinya buta banget soal MC jadi paham step-stepnya. Script Notion-nya estetik parah."
+        <br><br><b>— Nona Dinda</b>
+      </div>
+      <div class="testi-card">
+        "Bahasa di script-nya enak, gak kaku. Checklist-nya juga detail, aku jadi gak panikan lagi. Makasih yaaa!"
+        <br><br><b>— Nona Rara</b>
+      </div>
+      <div class="testi-card">
+        "Komunitasnya asik parah! Tips vocalnya juga kepake bgt buat pemula kyk aku biar suara gak cempreng."
+        <br><br><b>— Nona Sarah</b>
+      </div>
+       <div class="testi-card">
+        "Investasi leher ke atas terbaik bulan ini. Love banget sama gaya penyampaiannya yang simple."
+        <br><br><b>— Nona Fika</b>
+      </div>
+
+      <div class="testi-card">
+        "Sumpah ini ngebantu banget! Aku yg tadinya buta banget soal MC jadi paham step-stepnya. Script Notion-nya estetik parah."
+        <br><br><b>— Nona Dinda</b>
+      </div>
+      <div class="testi-card">
+        "Bahasa di script-nya enak, gak kaku. Checklist-nya juga detail, aku jadi gak panikan lagi. Makasih yaaa!"
+        <br><br><b>— Nona Rara</b>
+      </div>
+      <div class="testi-card">
+        "Komunitasnya asik parah! Tips vocalnya juga kepake bgt buat pemula kyk aku biar suara gak cempreng."
+        <br><br><b>— Nona Sarah</b>
+      </div>
+       <div class="testi-card">
+        "Investasi leher ke atas terbaik bulan ini. Love banget sama gaya penyampaiannya yang simple."
+        <br><br><b>— Nona Fika</b>
+      </div>
+
+    </div>
+    
+    <div style="text-align:center; font-size:10px; color:#aaa; margin-top:10px;">(Tahan layar untuk stop)</div>
+  </div>
+
+  <footer class="footer">
+    Go get the stage,<br>Nona! 💋
+  </footer>
+
+</div>
+
+</body>
+</html>
